@@ -1,0 +1,278 @@
+/* ===== Base / Theme ===== */
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --bg0: #070a14;
+    --bg1: #0b1020;
+    --text: #e9ecf7;
+    --muted: rgba(233,236,247,.72);
+    --glass: rgba(255,255,255,.06);
+    --glass2: rgba(255,255,255,.10);
+    --border: rgba(255,255,255,.14);
+    --neonA: rgba(99,102,241,.95); /* indigo */
+    --neonB: rgba(16,185,129,.90); /* green */
+    --pink: rgba(236,72,153,.85);
+    --danger: #ff4d6d;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 44px 18px;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+    color: var(--text);
+    background: radial-gradient(1200px 700px at 10% 0%, rgba(99,102,241,.22), transparent 55%), radial-gradient(1000px 600px at 100% 15%, rgba(16,185,129,.18), transparent 55%), radial-gradient(900px 500px at 40% 110%, rgba(236,72,153,.14), transparent 55%), linear-gradient(180deg, var(--bg0), var(--bg1));
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+/* ===== Title ===== */
+h1 {
+    margin: 0 0 16px;
+    font-size: clamp(28px, 3.2vw, 40px);
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    position: relative;
+}
+
+    h1::after {
+        content: "";
+        display: block;
+        height: 3px;
+        width: min(320px, 72%);
+        margin-top: 12px;
+        border-radius: 999px;
+        background: linear-gradient(90deg, var(--neonA), var(--neonB));
+        box-shadow: 0 0 16px rgba(99,102,241,.35), 0 0 22px rgba(16,185,129,.25);
+    }
+
+/* ===== Buttons wrapper (no HTML changes required) ===== */
+button {
+    font: inherit;
+}
+
+/* ===== Buttons (both btnJoke and btnCats) ===== */
+#btnJoke,
+#btnCats {
+    appearance: none;
+    border: 1px solid rgba(255,255,255,.18);
+    color: var(--text);
+    cursor: pointer;
+    padding: 12px 16px;
+    border-radius: 14px;
+    font-weight: 750;
+    letter-spacing: .2px;
+    box-shadow: 0 12px 30px rgba(0,0,0,.35), 0 0 0 6px rgba(255,255,255,.03);
+    transition: transform .08s ease, filter .2s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+/* Primary (Joke) */
+#btnJoke {
+    background: linear-gradient(135deg, rgba(99,102,241,.95), rgba(16,185,129,.85));
+}
+
+/* Secondary (Categories) */
+#btnCats {
+    background: linear-gradient(135deg, rgba(255,255,255,.10), rgba(255,255,255,.06));
+    border-color: rgba(255,255,255,.16);
+}
+
+/* Hover / Active */
+#btnJoke:hover {
+    filter: brightness(1.06);
+    box-shadow: 0 14px 36px rgba(0,0,0,.40), 0 0 0 6px rgba(99,102,241,.10), 0 0 0 12px rgba(16,185,129,.08);
+}
+
+#btnCats:hover {
+    filter: brightness(1.06);
+    border-color: rgba(255,255,255,.22);
+    box-shadow: 0 14px 36px rgba(0,0,0,.40), 0 0 0 6px rgba(236,72,153,.06);
+}
+
+#btnJoke:active,
+#btnCats:active {
+    transform: translateY(1px);
+}
+
+#btnJoke:disabled,
+#btnCats:disabled {
+    opacity: .65;
+    cursor: not-allowed;
+    filter: grayscale(.2);
+}
+
+/* ===== Error message ===== */
+#err {
+    margin: 10px 0 0;
+    padding: 10px 12px;
+    border-radius: 14px;
+    display: none;
+    color: rgba(255,255,255,.92);
+    background: rgba(255,77,109,.12);
+    border: 1px solid rgba(255,77,109,.28);
+    box-shadow: 0 10px 28px rgba(0,0,0,.25);
+}
+
+    #err:not(:empty) {
+        display: block;
+    }
+
+/* ===== Card (Joke) ===== */
+#card {
+    margin-top: 18px;
+    padding: 18px 18px 16px;
+    border-radius: 18px;
+    border: 1px solid var(--border);
+    background: linear-gradient(180deg, var(--glass), rgba(255,255,255,.03));
+    backdrop-filter: blur(12px);
+    box-shadow: 0 18px 55px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.08);
+    position: relative;
+    overflow: hidden;
+}
+
+    #card::before {
+        content: "";
+        position: absolute;
+        inset: -120px -140px auto auto;
+        width: 260px;
+        height: 260px;
+        border-radius: 50%;
+        background: radial-gradient(circle at 30% 30%, rgba(99,102,241,.35), transparent 60%);
+        filter: blur(2px);
+        pointer-events: none;
+    }
+
+    #card::after {
+        content: "";
+        position: absolute;
+        inset: auto auto -120px -140px;
+        width: 300px;
+        height: 300px;
+        border-radius: 50%;
+        background: radial-gradient(circle at 70% 70%, rgba(16,185,129,.25), transparent 60%);
+        pointer-events: none;
+    }
+
+/* ===== Joke content ===== */
+#jid {
+    font-size: 12px;
+    color: var(--muted);
+    opacity: .9;
+    word-break: break-all;
+    display: inline-flex;
+    gap: 10px;
+    align-items: center;
+}
+
+    #jid::before {
+        content: "ID";
+        font-size: 11px;
+        padding: 4px 8px;
+        border-radius: 999px;
+        background: rgba(255,255,255,.07);
+        border: 1px solid rgba(255,255,255,.12);
+        color: rgba(233,236,247,.8);
+    }
+
+#jdesc {
+    margin: 12px 0 0;
+    font-size: clamp(18px, 2vw, 22px);
+    line-height: 1.6;
+    letter-spacing: -0.01em;
+}
+
+    #jdesc::before {
+        content: "\201C"; /* “ */
+        opacity: .35;
+        font-size: 34px;
+        line-height: 0;
+        margin-right: 6px;
+    }
+
+    #jdesc::after {
+        content: "\201D"; /* ” */
+        opacity: .35;
+        font-size: 34px;
+        line-height: 0;
+        margin-left: 6px;
+    }
+
+
+/* ===== Categories Card ===== */
+#catsCard {
+    margin-top: 16px;
+    padding: 16px 18px;
+    border-radius: 18px;
+    border: 1px solid rgba(255,255,255,.14);
+    background: linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.025));
+    backdrop-filter: blur(12px);
+    box-shadow: 0 18px 55px rgba(0,0,0,.42), inset 0 1px 0 rgba(255,255,255,.08);
+    position: relative;
+    overflow: hidden;
+}
+
+    #catsCard::before {
+        content: "";
+        position: absolute;
+        inset: -140px auto auto -140px;
+        width: 320px;
+        height: 320px;
+        border-radius: 50%;
+        background: radial-gradient(circle at 30% 30%, rgba(236,72,153,.24), transparent 62%);
+        pointer-events: none;
+    }
+
+    #catsCard h2 {
+        margin: 0 0 12px;
+        font-size: 16px;
+        letter-spacing: .2px;
+        color: rgba(233,236,247,.9);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+        #catsCard h2::before {
+            content: "";
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--pink);
+            box-shadow: 0 0 0 5px rgba(236,72,153,.12);
+        }
+
+/* ===== Categories list ===== */
+#catsList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+    #catsList li {
+        padding: 8px 12px;
+        border-radius: 999px;
+        border: 1px solid rgba(255,255,255,.14);
+        background: rgba(255,255,255,.06);
+        color: rgba(233,236,247,.88);
+        font-size: 13px;
+        font-weight: 650;
+        letter-spacing: .15px;
+        box-shadow: 0 10px 24px rgba(0,0,0,.25);
+        transition: transform .08s ease, background .2s ease, border-color .2s ease;
+    }
+
+        #catsList li:hover {
+            transform: translateY(-1px);
+            background: rgba(255,255,255,.09);
+            border-color: rgba(255,255,255,.22);
+        }

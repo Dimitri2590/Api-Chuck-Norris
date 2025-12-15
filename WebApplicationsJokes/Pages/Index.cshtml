@@ -1,0 +1,35 @@
+﻿@page
+
+@{
+    ViewData["Title"] = "Chuck Front";
+}
+
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewData["Title"]</title>
+
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+
+<body>
+    <h1>Chuck Norris Jokes</h1>
+
+    <button id="btnJoke">Récupérer une blague</button>
+    <button id="btnCats" type="button">Afficher les catégories</button>
+
+    <p id="err"></p>
+
+    <div id="card" style="display:none;">
+        <p id="jdesc"></p>
+    </div>
+
+    <div id="catsCard" style="display:none;">
+        <h2>Catégories</h2>
+        <ul id="catsList"></ul>
+    </div>
+
+    <script src="~/js/site.js"></script>
+</body>
+</html>
