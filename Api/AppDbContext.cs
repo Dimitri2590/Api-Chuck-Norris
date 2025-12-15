@@ -13,6 +13,7 @@ public class AppDbContext : DbContext
     {
         modelBuilder.Entity<SavedJoke>()
             .HasIndex(x => x.ApiId)
-            .IsUnique();
+            .IsUnique();   
     }
 }
+     

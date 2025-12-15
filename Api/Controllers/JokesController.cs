@@ -1,4 +1,5 @@
 ﻿using Api;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel;
@@ -76,19 +77,16 @@ namespace Api.Controllers
         [HttpPost]
         [ProducesResponseType<Category>(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public void Post([FromBody] string description)
+        public IActionResult Post([FromBody] string description)
         {
             // Etape 1 : vérifier le paramètre
 
-            // Etape 2 : créer la nouvelle blague
-            JokeChuckNorris joke = new JokeChuckNorris
-            {
-                id = jokes.Last().id + 1,
-                value = description
-            };
+            // Etape 2 : stocker la blague appelée depuis l'API externe via la méthode get dans la base de données
+            
 
-            // Etape 3 : stocker la nouvelle blague (ajouter à la liste)
-            jokes.Add(joke);
+
+
+            return Ok(joke);
         }
 
         // PUT api/<ValuesController>/5
