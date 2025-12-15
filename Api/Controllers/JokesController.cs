@@ -86,7 +86,7 @@ namespace Api.Controllers
 
 
 
-            return Ok(joke);
+            return Ok();
         }
 
         // PUT api/<ValuesController>/5
